@@ -12,7 +12,7 @@ def getAmostra():
     dados = response.json()
 
     amostra = []
-    for i in range(4):
+    for i in range(2):
         amostra.append(dados[i])
 
     return jsonify(amostra)
