@@ -1,0 +1,24 @@
+from flask import Flask, jsonify
+import requests
+
+app = Flask(__name__)
+
+#===Adquirindo amostra dos dados
+@app.route('/getAmostra/ibge/nomes', methods=['GET'])
+def getAmostra():
+
+    url_api = 'https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking'
+    response = requests.get(url_api)
+    dados = response.json()
+
+    amostra = dados[0]
+
+    return jsonify(amostra)
+
+#===Realizando print de um conjunto de dados
+url_api = 'https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking'
+response = requests.get(url_api)
+dados = response.json()
+print(dados[0])
+
+app.run(port=5000,host='localhost',debug=True)
